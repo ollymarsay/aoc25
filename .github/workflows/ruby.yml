@@ -23,14 +23,4 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
     - name: Run all Advent of Code solutions
-      run: |
-        for day_dir in day_*/; do
-          if [ -d "$day_dir" ]; then
-            for script in ${day_dir}*.rb; do
-              if [ -f "$script" ]; then
-                echo "Running $script"
-                ruby "$script"
-              fi
-            done
-          fi
-        done
+      run: ruby runner.rb
