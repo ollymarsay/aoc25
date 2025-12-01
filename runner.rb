@@ -6,14 +6,24 @@
 #   ruby runner.rb       # Run all days
 #   ruby runner.rb 1     # Run only day 1
 
-def run_day(day_num)
+def run_day(day_num) # rubocop:disable Metrics/MethodLength
   day_dir = "day_#{day_num}"
-  script = "#{day_dir}/day_#{day_num}.rb"
+  ruby_script = "#{day_dir}/ruby/day_#{day_num}.rb"
+  python_script = "#{day_dir}/python/day_#{day_num}.py"
 
-  return unless File.exist?(script)
+  return unless File.exist?(ruby_script) || File.exist?(python_script)
 
   puts "\n=== Day #{day_num} ==="
-  load script
+
+  if File.exist?(ruby_script)
+    puts 'Ruby:'
+    load ruby_script
+  end
+
+  return unless File.exist?(python_script)
+
+  puts 'Python:'
+  system("python3 #{python_script}")
 end
 
 if ARGV.empty?
