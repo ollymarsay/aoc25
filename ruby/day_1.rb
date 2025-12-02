@@ -17,7 +17,7 @@ def determine_safe_password(combinations)
   puts "Times at zero: #{times_at_zero}"
 end
 
-determine_safe_password(File.readlines('day_1/combinations.txt', chomp: true))
+determine_safe_password(File.readlines('combinations.txt', chomp: true))
 
 # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
 def determine_safe_password_method_two(combinations)
@@ -40,4 +40,4 @@ def determine_safe_password_method_two(combinations)
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
-determine_safe_password_method_two(File.readlines('day_1/combinations.txt', chomp: true))
+determine_safe_password_method_two(File.readlines('combinations.txt', chomp: true))
