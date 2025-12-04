@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
 # Advent of Code 2025 Runner
-# Usage: ruby runner.rb [day_number]
-# Examples:
-#   ruby runner.rb       # Run all days
-#   ruby runner.rb 1     # Run only day 1
 
 def run_day(day_num) # rubocop:disable Metrics/MethodLength
   ruby_script = "ruby/day_#{day_num}.rb"
   python_script = "python/day_#{day_num}.py"
+  elixir_script = "elixir/day_#{day_num}.exs"
 
-  return unless File.exist?(ruby_script) || File.exist?(python_script)
+  return unless File.exist?(ruby_script) || File.exist?(python_script) || File.exist?(elixir_script)
 
   puts "\n=== Day #{day_num} ==="
 
@@ -19,10 +16,15 @@ def run_day(day_num) # rubocop:disable Metrics/MethodLength
     load ruby_script
   end
 
-  return unless File.exist?(python_script)
+  if File.exist?(python_script)
+    puts 'Python:'
+    system("python3 #{python_script}")
+  end
 
-  puts 'Python:'
-  system("python3 #{python_script}")
+  return unless File.exist?(elixir_script)
+
+  puts 'Elixir:'
+  system("elixir #{elixir_script}")
 end
 
 if ARGV.empty?
